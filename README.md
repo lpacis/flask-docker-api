@@ -5,7 +5,7 @@ To run this basic API - first install docker
 https://www.docker.com/
 
 Next, in the root project directory run the following command in a bash console - `bash start.sh` 
-This will build and run the image on port 56733:80
+This will build the image and run the container on port 56733:80 which you can now go to localhost:56733 
 
 You can reload change by using the command `touch uwsgi.ini` 
 
