@@ -10,3 +10,5 @@ This will build and run the image on port 56733:80
 You can reload change by using the command `touch uwsgi.ini` 
 
 You can view the endpoints available by going to localhost:56733/site-map
+
+You can stop and start the container using `docker stop flask_docker_api` and `docker start flask_docker_api`
