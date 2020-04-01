@@ -17,7 +17,7 @@ RUN pip install -r requirements.txt
 # expose the app port
 EXPOSE 5000
 
-RUN pip install gunicorn
+# RUN pip install gunicorn
 
 # run the app server - this would be more of a production command vs development I believe
 # CMD ["gunicorn", "--bind", "0.0.0.0:5000", "--workers", "3", "app:app"]

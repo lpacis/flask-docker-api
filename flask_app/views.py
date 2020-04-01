@@ -84,7 +84,7 @@ def site_map():
 @app.route('/logs')
 def get_logs():
 	app.logger.info('Made it to the logging route')
-	return send_from_directory('..', 'log_file.log', as_attachment = True)
+	return send_from_directory('', 'log_file.log', as_attachment = True)
 
 #example endpoint w/ get and post requests
 @app.route('/example/endpoint', methods = ['POST', 'GET'])
@@ -99,14 +99,12 @@ mail = Mail(app)
 def send_mail(data):
 
 	with app.app_context():
-        
+		data['message']
 		msg = Message(subject="Hello",
 		sender=app.config.get("MAIL_USERNAME"),
 		recipients=[data['email']],
 		body=data['message'])
 		mail.send(msg)
-
-
 
 @app.route('/background-task', methods =['GET', 'POST'])
 def background_task():
@@ -118,10 +116,12 @@ def background_task():
 		data = {}
 		data['email'] = request.form['email']
 		data['message'] = request.form['message']
-		
+		number_of_codes = int(request.form['numCodes'])
 
+		if number_of_codes and number_of_codes > 0:
+			task = celery.send_task('tasks.generate_codes', args = [number_of_codes],link = send_mail(data))
 		#add some numbers together and then send an email on the callback.
-		task = celery.send_task('tasks.add', args=[1, 2], kwargs={}, link=send_mail(data))
+		# task = celery.send_task('tasks.add', args=[1, 2], kwargs={}, link=send_mail(data))
 		# send_mail.apply_async((data,), countdown=0)
 		flash("Email will be sent to the address that is " + str(data['email']) + " in 2 minutes.")
 

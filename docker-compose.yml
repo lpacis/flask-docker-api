@@ -15,13 +15,14 @@ services:
       - redis
   worker:
     build:
-      context: celery_app
+      context: ./celery_app
       dockerfile: Dockerfile
+    volumes: ['./celery_app:/celery_app']
     depends_on:
       - redis
   monitor:
     build:
-      context: celery_app
+      context: ./celery_app
       dockerfile: Dockerfile
     ports:
      - "5555:5555"

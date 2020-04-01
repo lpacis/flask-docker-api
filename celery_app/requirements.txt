@@ -8,4 +8,6 @@ pytz==2018.3
 redis==2.10.6
 tornado==5.0.2
 vine==1.1.4
-flask_mail
+watchdog==0.10.2
+pyyaml==5.3.1
+argh==0.26.2

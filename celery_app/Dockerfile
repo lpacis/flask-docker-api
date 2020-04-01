@@ -4,9 +4,10 @@ ENV CELERY_BROKER_URL redis://redis:6379/0
 ENV CELERY_RESULT_BACKEND redis://redis:6379/0
 ENV C_FORCE_ROOT true
 
-COPY . /queue
-WORKDIR /queue
+COPY . /celery_app
+WORKDIR /celery_app
+
 
 RUN pip install -r requirements.txt
 
-ENTRYPOINT celery -A tasks worker --loglevel=info
+ENTRYPOINT celery -A tasks worker  --loglevel=INFO -f=celery_logs.log
