@@ -1,7 +1,7 @@
 Flask==1.0.2
 WTForms==2.2.1
 Stripe==2.44.0
-Celery==4.4.2
+Celery==5.2.2
 redis==3.2.0
 flask_mail
 amqp==2.5.2
